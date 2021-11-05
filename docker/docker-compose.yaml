@@ -1,0 +1,27 @@
+version: '3'
+networks:
+  development:
+  test:
+volumes:
+  db_data:
+  gem_cache:
+  shared_data:
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rails-app
+    volumes:
+      - .:/app
+      - shared_data:/var/shared
+      - gem_cache:/usr/local/bundle/gems
+    ports:
+      - 8080:8080
+    stdin_open: true
+    tty: true
+    # command: ['rails', 'server', '-p', '8080', '-b', '0.0.0.0']
+    # environment:
+    #   RAILS_ENV: development
+
+      
