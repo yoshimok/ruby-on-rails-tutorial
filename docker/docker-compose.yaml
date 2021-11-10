@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile
     container_name: rails-app
     volumes:
-      - .:/app
+      - ../app:/app
       - shared_data:/var/shared
       - gem_cache:/usr/local/bundle/gems
     ports:
@@ -23,5 +23,3 @@ services:
     # command: ['rails', 'server', '-p', '8080', '-b', '0.0.0.0']
     # environment:
     #   RAILS_ENV: development
-
-      
