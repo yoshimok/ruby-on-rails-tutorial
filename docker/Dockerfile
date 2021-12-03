@@ -22,8 +22,14 @@ RUN apt-get update -qq \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && truncate -s 0 /var/log/*log
 
+RUN apt-get update -qq && apt-get install -y nodejs yarn
+WORKDIR /app
+COPY ./rails_app/Gemfile /app/Gemfile
+COPY ./rails_app/Gemfile.lock /app/Gemfile.lock
+RUN bundle install
+COPY . /app
+
 RUN gem update --system &&\
     gem install rails
 
 
-WORKDIR /app
