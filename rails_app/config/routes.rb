@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   post '/user/', to: 'user#create'
   get '/user', to: 'user#show'
   get '/user/:id', to: 'user#show_by_id'
-  put '/user', to: 'user#upgrade'
+  put '/user', to: 'user#update'
   delete '/user', to: 'user#delete'
 end

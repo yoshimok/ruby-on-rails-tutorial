@@ -24,9 +24,12 @@ class UserController < ApplicationController
     render json: @user
   end
 
-  def upgrade
+  def update
     body = JSON.parse(request.body.read, {symbolize_names: true})
-    render json: body
+
+    @user = User.find_by(id: params[:id])
+    @user.update(user_params)
+    render json: @user
   end
 
   def delete
@@ -36,4 +39,9 @@ class UserController < ApplicationController
     end
     render json: user
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:name, :age)
+    end
 end
